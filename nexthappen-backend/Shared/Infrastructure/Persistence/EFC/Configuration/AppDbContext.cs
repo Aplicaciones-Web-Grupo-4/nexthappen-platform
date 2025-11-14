@@ -1,5 +1,6 @@
 ﻿using EntityFrameworkCore.CreatedUpdatedDate.Extensions;
 using Microsoft.EntityFrameworkCore;
+using nexthappen_backend.AssignStands.Domain.Entities;
 using nexthappen_backend.CreateEvent.Domain.Entities;
 using nexthappen_backend.Shared.Infrastructure.Persistence.EFC.Configuration.Extensions;
 
@@ -10,7 +11,9 @@ public class AppDbContext : DbContext
     public AppDbContext(DbContextOptions options) : base(options) { }
 
     public DbSet<Event> Events { get; set; } = null!;
-
+    
+    public DbSet<AssignedStand> AssignedStands { get; set; }
+    
     protected override void OnConfiguring(DbContextOptionsBuilder builder)
     {
         builder.AddCreatedUpdatedInterceptor();
@@ -54,6 +57,27 @@ public class AppDbContext : DbContext
                   .HasColumnType("datetime")
                   .IsRequired();
             });
+        });
+        
+        modelBuilder.Entity<AssignedStand>(entity =>
+        {
+            entity.ToTable("AssignedStands");
+
+            entity.HasKey(s => s.Id);
+
+            entity.Property(s => s.Id)
+                .ValueGeneratedNever(); // porque ya lo creas con Guid.NewGuid()
+
+            entity.Property(s => s.EventId)
+                .IsRequired();
+
+            entity.Property(s => s.Name)
+                .HasMaxLength(200)
+                .IsRequired();
+
+            entity.Property(s => s.Category)
+                .HasMaxLength(150)
+                .IsRequired();
         });
     }
 }

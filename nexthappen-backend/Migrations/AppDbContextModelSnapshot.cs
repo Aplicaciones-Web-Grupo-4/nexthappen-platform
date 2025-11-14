@@ -22,6 +22,29 @@ namespace nexthappen_backend.Migrations
 
             MySqlModelBuilderExtensions.AutoIncrementColumns(modelBuilder);
 
+            modelBuilder.Entity("nexthappen_backend.AssignStands.Domain.Entities.AssignedStand", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .HasColumnType("char(36)");
+
+                    b.Property<string>("Category")
+                        .IsRequired()
+                        .HasMaxLength(150)
+                        .HasColumnType("varchar(150)");
+
+                    b.Property<Guid>("EventId")
+                        .HasColumnType("char(36)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("varchar(200)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("AssignedStands", (string)null);
+                });
+
             modelBuilder.Entity("nexthappen_backend.CreateEvent.Domain.Entities.Event", b =>
                 {
                     b.Property<Guid>("Id")

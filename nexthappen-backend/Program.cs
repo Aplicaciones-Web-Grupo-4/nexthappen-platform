@@ -1,4 +1,7 @@
 using Microsoft.EntityFrameworkCore;
+using nexthappen_backend.AssignStands.Application.Services;
+using nexthappen_backend.AssignStands.Domain.Entities;
+using nexthappen_backend.AssignStands.Infrastructure.Persistence.Repositories;
 using Pomelo.EntityFrameworkCore.MySql.Infrastructure;
 using nexthappen_backend.Shared.Infrastructure.Interfaces.ASP.Configuration;
 using nexthappen_backend.Shared.Infrastructure.Persistence.EFC.Configuration;
@@ -15,12 +18,14 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRouting(options => options.LowercaseUrls = true);
 builder.Services.AddControllers(options => options.Conventions.Add(new KebabCaseRouteNamingConvention()));
 builder.Services.AddSwaggerGen(options => { options.EnableAnnotations(); });
+builder.Services.AddScoped<IAssignedStandRepository, AssignedStandRepository>();
 
 builder.Services.AddScoped<IManageEventRepository, ManageEventRepository>();
 builder.Services.AddScoped<ManageEventService>();
 builder.Services.AddScoped<GetAllEventsHandler>();
 builder.Services.AddScoped<UpdateEventHandler>();
 builder.Services.AddScoped<DeleteEventHandler>();
+builder.Services.AddScoped<AssignStandsService>();
 
 
 builder.Services.AddCors(options =>
