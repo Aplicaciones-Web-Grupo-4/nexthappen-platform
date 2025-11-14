@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "B+eMj5RY3MM=",
+  "dgSpecHash": "OSA5AwD3vCo=",
   "success": true,
-  "projectFilePath": "D:\\NextHappen-Backend\\nexthappen-backend\\nexthappen-backend\\nexthappen-backend.csproj",
+  "projectFilePath": "D:\\nh-platform\\nexthappen-platform\\nexthappen-backend\\nexthappen-backend.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Quinho\\.nuget\\packages\\entityframeworkcore.createdupdateddate\\8.0.0\\entityframeworkcore.createdupdateddate.8.0.0.nupkg.sha512",
     "C:\\Users\\Quinho\\.nuget\\packages\\humanizer\\3.0.0-rc.30\\humanizer.3.0.0-rc.30.nupkg.sha512",

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\NextHappen-Backend\\nexthappen-backend\\nexthappen-backend\\nexthappen-backend.csproj": {}
+    "D:\\nh-platform\\nexthappen-platform\\nexthappen-backend\\nexthappen-backend.csproj": {}
   },
   "projects": {
-    "D:\\NextHappen-Backend\\nexthappen-backend\\nexthappen-backend\\nexthappen-backend.csproj": {
+    "D:\\nh-platform\\nexthappen-platform\\nexthappen-backend\\nexthappen-backend.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\NextHappen-Backend\\nexthappen-backend\\nexthappen-backend\\nexthappen-backend.csproj",
+        "projectUniqueName": "D:\\nh-platform\\nexthappen-platform\\nexthappen-backend\\nexthappen-backend.csproj",
         "projectName": "nexthappen-backend",
-        "projectPath": "D:\\NextHappen-Backend\\nexthappen-backend\\nexthappen-backend\\nexthappen-backend.csproj",
+        "projectPath": "D:\\nh-platform\\nexthappen-platform\\nexthappen-backend\\nexthappen-backend.csproj",
         "packagesPath": "C:\\Users\\Quinho\\.nuget\\packages\\",
-        "outputPath": "D:\\NextHappen-Backend\\nexthappen-backend\\nexthappen-backend\\obj\\",
+        "outputPath": "D:\\nh-platform\\nexthappen-platform\\nexthappen-backend\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -118,7 +118,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Users\\Quinho\\.dotnet\\sdk\\9.0.301/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.307/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
