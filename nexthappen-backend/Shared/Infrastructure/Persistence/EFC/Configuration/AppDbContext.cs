@@ -1,8 +1,14 @@
 ﻿using EntityFrameworkCore.CreatedUpdatedDate.Extensions;
 using Microsoft.EntityFrameworkCore;
-using nexthappen_backend.AssignStands.Domain.Entities;
 using nexthappen_backend.CreateEvent.Domain.Entities;
 using nexthappen_backend.Shared.Infrastructure.Persistence.EFC.Configuration.Extensions;
+using nexthappen_backend.Shared.Infrastructure.Persistence.EFC.Configuration;
+using nexthappen_backend.EventDiscovery.Infrastructure.Persistence.Configuration;
+using nexthappen_backend.EventDiscovery.Domain.Entities;
+using nexthappen_backend.SavedEvents.Domain.Entities;
+using nexthappen_backend.Tickets.Domain.Entities;
+using nexthappen_backend.SavedEvents.Infrastructure.Persistence.Configuration;
+using nexthappen_backend.Tickets.Infrastructure.Persistence.Configuration;
 
 namespace nexthappen_backend.Shared.Infrastructure.Persistence.EFC.Configuration;
 
@@ -11,9 +17,10 @@ public class AppDbContext : DbContext
     public AppDbContext(DbContextOptions options) : base(options) { }
 
     public DbSet<Event> Events { get; set; } = null!;
-    
-    public DbSet<AssignedStand> AssignedStands { get; set; }
-    
+    public DbSet<DiscoveryEvent> DiscoveryEvents { get; set; } = null!;
+    public DbSet<SavedEvent> SavedEvents { get; set; } = null!;
+    public DbSet<Ticket> Tickets { get; set; } = null!;
+
     protected override void OnConfiguring(DbContextOptionsBuilder builder)
     {
         builder.AddCreatedUpdatedInterceptor();
@@ -23,6 +30,9 @@ public class AppDbContext : DbContext
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
+        modelBuilder.ApplyConfiguration(new DiscoveryEventConfiguration());
+        modelBuilder.ApplyConfiguration(new SavedEventConfiguration());
+        modelBuilder.ApplyConfiguration(new TicketConfiguration());
 
         modelBuilder.Entity<Event>(entity =>
         {
@@ -57,27 +67,6 @@ public class AppDbContext : DbContext
                   .HasColumnType("datetime")
                   .IsRequired();
             });
-        });
-        
-        modelBuilder.Entity<AssignedStand>(entity =>
-        {
-            entity.ToTable("AssignedStands");
-
-            entity.HasKey(s => s.Id);
-
-            entity.Property(s => s.Id)
-                .ValueGeneratedNever(); // porque ya lo creas con Guid.NewGuid()
-
-            entity.Property(s => s.EventId)
-                .IsRequired();
-
-            entity.Property(s => s.Name)
-                .HasMaxLength(200)
-                .IsRequired();
-
-            entity.Property(s => s.Category)
-                .HasMaxLength(150)
-                .IsRequired();
         });
     }
 }
