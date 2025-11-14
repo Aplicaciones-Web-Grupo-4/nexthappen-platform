@@ -50,10 +50,10 @@ builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowFrontend", policy =>
     {
-        policy.WithOrigins("http://localhost:5173")
+        policy.AllowAnyOrigin()
             .AllowAnyHeader()
-            .AllowAnyMethod()
-            .AllowCredentials();
+            .AllowAnyMethod();
+
     });
 });
 
@@ -63,7 +63,7 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 
     options.UseMySql(
         connectionString,
-        new MySqlServerVersion(new Version(9, 0, 0)), // versión de MySQL de tu entorno (ajústala si es diferente)
+        new MySqlServerVersion(new Version(8, 0, 32)), // versión de MySQL de tu entorno (ajústala si es diferente)
         mySqlOptions =>
         {
             mySqlOptions.SchemaBehavior(MySqlSchemaBehavior.Ignore); // evita errores de esquema
@@ -81,9 +81,9 @@ if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
+    app.UseHttpsRedirection();
 }
 
-app.UseHttpsRedirection();
 app.UseAuthorization();
 app.MapControllers();
 app.Run();
